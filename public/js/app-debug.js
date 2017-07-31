@@ -16,7 +16,7 @@ function initMaps() {
     districtArbat = new google.maps.Polygon({ paths: districtCoords });
     districtArbat.setMap(map);
 
-    fetch('http://bars.dev/get').then(function (response) {
+    fetch('http://gwctest.org/bars/get').then(function (response) {
         if (response.status !== 200) {
             console.log('Looks like there was a problem. Status Code: ' + response.status);
             return;
