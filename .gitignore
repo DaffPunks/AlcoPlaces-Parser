@@ -32,3 +32,5 @@ prev/*
 phpstorm.php
 
 node_modules/*
+
+application/config/database.php

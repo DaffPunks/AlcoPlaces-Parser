@@ -31,7 +31,7 @@ function initMaps() {
     districtArbat = new google.maps.Polygon({paths: districtCoords});
     districtArbat.setMap(map);
 
-    fetch('http://bars.dev/get')
+    fetch('http://gwctest.org/bars/get')
         .then(
             function(response) {
                 if (response.status !== 200) {
