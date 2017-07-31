@@ -26,6 +26,7 @@ class Parser extends CI_Controller
     {
         $this->db->db_debug = false;
         $search = $_GET['q'];
+        $city = $_GET['city'];
 
         do {
 
@@ -33,7 +34,7 @@ class Parser extends CI_Controller
                 "page_size" => 50,
                 "page" => $this->page,
                 "q" => $search,
-                "region_id" => 32,
+                "region_id" => $city,
                 "fields" => "dym,request_type,items.adm_div,items.contact_groups,items.flags,items.address,items.rubrics,items.name_ex,items.point,items.region_id,items.external_content,items.org,items.group,items.schedule,items.ads.options,items.stat,context_rubrics,items.reviews,search_attributes",
                 "key" => "rutnpt3272"
             );
@@ -43,10 +44,11 @@ class Parser extends CI_Controller
                 ->send();
 
 //            var_dump($response);
-            echo json_encode($response->body);
-
+//            echo json_encode($response->body);
 
             $total_pages = $response->body->result->total / 50 + 1;
+
+            var_dump($this->page . " " . $total_pages);
 
             foreach ($response->body->result->items as $item) {
 
@@ -87,6 +89,7 @@ class Parser extends CI_Controller
                         'name' => $organization['name'],
                         'lat' => $organization['lat'],
                         'long' => $organization['long'],
+                        'city' => $city,
                         'phone' => $organization['phone'],
                         'address' => $organization['address'],
                         'website' => $organization['website'],
@@ -137,5 +140,17 @@ class Parser extends CI_Controller
         {
             echo "Query failed!";
         }
+    }
+
+    public function get() {
+
+
+        $this->db->where('lat >', 55.743217);
+        $this->db->where('lat <', 55.759544);
+        $this->db->where('long >', 37.569258);
+        $this->db->where('long <', 37.614718);
+        $data = $this->db->get('places');
+
+        echo json_encode($data->result_array());
     }
 }

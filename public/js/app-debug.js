@@ -16,7 +16,7 @@ function initMaps() {
     districtArbat = new google.maps.Polygon({ paths: districtCoords });
     districtArbat.setMap(map);
 
-    fetch('http://gwctest.org/bars/api.php').then(function (response) {
+    fetch('http://bars.dev/get').then(function (response) {
         if (response.status !== 200) {
             console.log('Looks like there was a problem. Status Code: ' + response.status);
             return;
@@ -27,9 +27,6 @@ function initMaps() {
             console.log(count);
             document.getElementById('count').innerHTML = count;
             console.log(JSON.stringify(array));
-            var xls = json2xls(array);
-
-            fs.writeFileSync('data.xlsx', xls, 'binary');
         });
     }).catch(function (err) {
         console.log('Fetch Error :-S', err);
@@ -51,9 +48,9 @@ function setMarkers(data) {
 
             count++;
 
-            var DOM = '<div class="col-md-4 place">' + '<div class="place-wrap">' + '<div class="title">' + item.name + '</div>' + '<div class="coords">Координаты: ' + item.lat + ',' + item.long + '</div>' + '<div class="phone">' + item.phone + '</div>' + '<div class="phone">' + item.address + '</div>' + '<div class="website"><a href="http://' + item.website + '">' + item.website + '</a></div>' + '<div class="schedule">' + parseWeeksHTML(item.schedule) + '</div>' + '</div>' + '</div>';
+            var DOM = '<div class="col-md-4 place">' + '<div class="place-wrap">' + '<div class="title">' + item.name + '</div>' + '<div class="coords">Координаты: ' + item.lat + ',' + item.long + '</div>' + '<div class="phone">' + item.phone + '</div>' + '<div class="phone">' + item.address + '</div>' + '<div class="phone">Рейтинг: ' + item.rating + '</div>' + '<div class="phone">Отзывов: ' + item.reviews + '</div>' + '<div class="website"><a href="http://' + item.website + '">' + item.website + '</a></div>' + '<div class="schedule">' + parseWeeksHTML(item.schedule) + '</div>' + '</div>' + '</div>';
 
-            var DOM_IW = '<div class="place">' + '<div class="place-wrap">' + '<div class="title">' + item.name + '</div>' + '<div class="coords">Координаты: ' + item.lat + ',' + item.long + '</div>' + '<div class="phone">' + item.phone + '</div>' + '<div class="phone">' + item.address + '</div>' + '<div class="website"><a href="http://' + item.website + '">' + item.website + '</a></div>' + '<div class="schedule">' + parseWeeksHTML(item.schedule) + '</div>' + '</div>' + '</div>';
+            var DOM_IW = '<div class="place">' + '<div class="place-wrap">' + '<div class="title">' + item.name + '</div>' + '<div class="coords">Координаты: ' + item.lat + ',' + item.long + '</div>' + '<div class="phone">' + item.phone + '</div>' + '<div class="phone">' + item.address + '</div>' + '<div class="phone">Рейтинг: ' + item.rating + '</div>' + '<div class="phone">Отзывов: ' + item.reviews + '</div>' + '<div class="website"><a href="http://' + item.website + '">' + item.website + '</a></div>' + '<div class="schedule">' + parseWeeksHTML(item.schedule) + '</div>' + '</div>' + '</div>';
 
             var infowindow = new google.maps.InfoWindow({
                 content: DOM_IW
