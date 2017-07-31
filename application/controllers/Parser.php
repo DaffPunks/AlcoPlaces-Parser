@@ -103,21 +103,24 @@ class Parser extends CI_Controller
                         $last_id_place = $this->db->insert_id();
 
                         foreach ($item->rubrics as $rubric) {
-                            $this->types_model->insert([
-                                'type_id' => $rubric->short_id,
-                                'name' => $rubric->name,
-                            ]);
+                            if($rubric->kind == "primary") {
 
-                            $last_id_type = $this->db->insert_id();
+                                $this->types_model->insert([
+                                    'type_id' => $rubric->short_id,
+                                    'name' => $rubric->name,
+                                ]);
 
-                            $this->types_model->insert_tp([
-                                'place_id' => $last_id_place,
-                                'type_id' => $last_id_type,
-                            ]);
+                                $this->db->where('type_id', $rubric->short_id);
+                                $data = $this->db->get('types');
+                                $results = $data->result_array();
+
+                                $this->types_model->insert_tp([
+                                    'place_id' => $last_id_place,
+                                    'type_id' => $results[0]['id'],
+                                ]);
+                            }
                         }
-
                     }
-
                 }
             }
 
@@ -149,8 +152,34 @@ class Parser extends CI_Controller
         $this->db->where('lat <', 55.759544);
         $this->db->where('long >', 37.569258);
         $this->db->where('long <', 37.614718);
+        $this->db->where('city', 32);
         $data = $this->db->get('places');
 
-        echo json_encode($data->result_array());
+        $results = $data->result_array();
+
+        for ($i = 0; $i < count($results); $i++) {
+            $this->db->where('place_id', $results[$i]['id']);
+            $data_pt = $this->db->get('place_types');
+            $types = $data_pt->result_array();
+
+            $category = '';
+            foreach ($types as $type) {
+                $this->db->where('id', $type['type_id']);
+                $data_t = $this->db->get('types');
+                $type_a = $data_t->result_array();
+
+                if($category != '') {
+                    $category .= ', ';
+                }
+
+//                var_dump($type_a);
+
+                $category .= $type_a[0] ['name'];
+            }
+
+            $results[$i]['category'] = $category;
+        }
+
+        echo json_encode($results);
     }
 }

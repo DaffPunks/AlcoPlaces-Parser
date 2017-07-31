@@ -81,6 +81,7 @@ function setMarkers(data) {
                 '<div class="phone">'+item.address+'</div>' +
                 '<div class="phone">Рейтинг: '+item.rating+'</div>' +
                 '<div class="phone">Отзывов: '+item.reviews+'</div>' +
+                '<div class="phone">'+item.category+'</div>' +
                 '<div class="website"><a href="http://'+item.website+'">'+item.website+'</a></div>' +
                 '<div class="schedule">'+parseWeeksHTML(item.schedule)+'</div>' +
                 '</div>' +
@@ -94,6 +95,7 @@ function setMarkers(data) {
                 '<div class="phone">'+item.address+'</div>' +
                 '<div class="phone">Рейтинг: '+item.rating+'</div>' +
                 '<div class="phone">Отзывов: '+item.reviews+'</div>' +
+                '<div class="phone">'+item.category+'</div>' +
                 '<div class="website"><a href="http://'+item.website+'">'+item.website+'</a></div>' +
                 '<div class="schedule">'+parseWeeksHTML(item.schedule)+'</div>' +
                 '</div>' +
