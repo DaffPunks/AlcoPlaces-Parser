@@ -8,6 +8,22 @@
     <link href="<?= base_url(); ?>public/css/style.css" rel="stylesheet">
 </head>
 <body>
+<script>
+    var region = <?= $_GET['area'] ?>;
+</script>
+<header>
+    <div class="container">
+        <div class="col-md-4">
+            <a href="?area=1">Арбат</a>
+        </div>
+        <div class="col-md-4">
+            <a href="?area=2">Химки</a>
+        </div>
+        <div class="col-md-4">
+            <a href="?area=3">Калининград</a>
+        </div>
+    </div>
+</header>
 
 <div id="map"></div>
 <div class="container">

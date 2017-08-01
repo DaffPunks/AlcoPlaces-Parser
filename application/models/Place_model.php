@@ -95,6 +95,18 @@ class Place_model extends CI_Model
         return $is_cafe_bar_club_primary && $is_not_fastfood;
     }
 
+    public function get_tags($attr_groups) {
+        $text = '';
+
+        foreach ($attr_groups as $attr_group) {
+            foreach ($attr_group->attributes as $attr) {
+                $text .= $attr->name . '. ';
+            }
+        }
+
+        return $text;
+    }
+
     public function insert($attr) {
         $this->db->insert('places', $attr);
     }

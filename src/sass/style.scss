@@ -5,7 +5,7 @@
 
 .col-md-4.place {
   margin: 10px 0;
-  min-height: 350px;
+  min-height: 400px;
 }
 
 .title {
@@ -31,5 +31,14 @@
     color: #008641;
     font-weight: bold;
     cursor: pointer;
+  }
+}
+
+header {
+  min-height: 50px;
+
+  .col-md-4 {
+    text-align: center;
+    padding: 20px 0;
   }
 }

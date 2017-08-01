@@ -57,3 +57,4 @@ $route['parse'] = 'parser/parse';
 $route['clear'] = 'parser/clear';
 $route['admin'] = 'front';
 $route['get'] = 'parser/get';
+$route['test'] = 'front/test';

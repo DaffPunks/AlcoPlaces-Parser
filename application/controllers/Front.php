@@ -21,4 +21,9 @@ class Front extends CI_Controller
 
         $this->load->view('app');
     }
+
+    public function test() {
+
+        $this->load->view('test');
+    }
 }

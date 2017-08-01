@@ -35,7 +35,7 @@ class Parser extends CI_Controller
                 "page" => $this->page,
                 "q" => $search,
                 "region_id" => $city,
-                "fields" => "dym,request_type,items.adm_div,items.contact_groups,items.flags,items.address,items.rubrics,items.name_ex,items.point,items.region_id,items.external_content,items.org,items.group,items.schedule,items.ads.options,items.stat,context_rubrics,items.reviews,search_attributes",
+                "fields" => "dym,request_type,items.adm_div,items.attribute_groups,items.contact_groups,items.flags,items.address,items.rubrics,items.name_ex,items.point,items.region_id,items.external_content,items.org,items.group,items.schedule,items.ads.options,items.stat,context_rubrics,items.reviews,search_attributes",
                 "key" => "rutnpt3272"
             );
 
@@ -49,6 +49,7 @@ class Parser extends CI_Controller
             $total_pages = $response->body->result->total / 50 + 1;
 
             var_dump($this->page . " " . $total_pages);
+            var_dump($response);
 
             foreach ($response->body->result->items as $item) {
 
@@ -83,6 +84,12 @@ class Parser extends CI_Controller
                     } if(isset($item->reviews->review_count)) {
                         $organization['reviews'] = $item->reviews->review_count;
                     }
+                    if(isset($item->schedule)) {
+                        $organization['tags'] = $this->place_model->get_tags($item->attribute_groups);
+                    } else {
+                        $organization['tags'] = "";
+                    }
+
 
                     $this->place_model->insert([
                         'place_id' => $organization['place_id'],
@@ -95,7 +102,8 @@ class Parser extends CI_Controller
                         'website' => $organization['website'],
                         'schedule' => $organization['schedule'],
                         'rating' => $organization['rating'],
-                        'reviews' => $organization['reviews']
+                        'reviews' => $organization['reviews'],
+                        'tags' => $organization['tags']
                     ]);
 
                     if ($this->db->error()['code'] == '0') {
@@ -126,8 +134,8 @@ class Parser extends CI_Controller
 
             $this->page++;
 
-        } while ($total_pages >= $this->page);
-//        } while (0);
+//        } while ($total_pages >= $this->page);
+        } while (0);
 
     }
 
@@ -147,12 +155,38 @@ class Parser extends CI_Controller
 
     public function get() {
 
+        $area = $_GET['area'] == null ? 1 : $_GET['area'];
 
-        $this->db->where('lat >', 55.743217);
-        $this->db->where('lat <', 55.759544);
-        $this->db->where('long >', 37.569258);
-        $this->db->where('long <', 37.614718);
-        $this->db->where('city', 32);
+        if($area == 1) {
+            $this->db->where('lat >', 55.743217);
+            $this->db->where('lat <', 55.759544);
+            $this->db->where('long >', 37.569258);
+            $this->db->where('long <', 37.614718);
+            $this->db->where('city', 32);
+
+            echo json_encode($this->get_area());
+
+        } else if ($area == 2) {
+
+            $this->db->where('lat >', 55.872687);
+            $this->db->where('lat <', 56.003828);
+            $this->db->where('long >', 37.219064);
+            $this->db->where('long <', 37.498529);
+            $this->db->where('city', 32);
+
+            echo json_encode($this->get_area());
+
+        } else if ($area == 3) {
+
+            $this->db->where('city', 40);
+
+            echo json_encode($this->get_area());
+
+        }
+
+    }
+
+    private function get_area() {
         $data = $this->db->get('places');
 
         $results = $data->result_array();
@@ -172,14 +206,12 @@ class Parser extends CI_Controller
                     $category .= ', ';
                 }
 
-//                var_dump($type_a);
-
                 $category .= $type_a[0] ['name'];
             }
 
             $results[$i]['category'] = $category;
         }
 
-        echo json_encode($results);
+        return $results;
     }
 }
