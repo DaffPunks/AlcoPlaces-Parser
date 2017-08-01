@@ -81,9 +81,8 @@ function initMaps() {
 
     // districtArbat.setMap(map);
 
-    fetch('http://bars.dev/get?area=' + region)
-    // fetch('http://gwctest.org/bars/get')
-    .then(function (response) {
+    // fetch('http://bars.dev/get?area=' + region)
+    fetch('http://gwctest.org/bars/get?area=' + region).then(function (response) {
         if (response.status !== 200) {
             console.log('Looks like there was a problem. Status Code: ' + response.status);
             return;
