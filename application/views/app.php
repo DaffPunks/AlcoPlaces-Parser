@@ -1,3 +1,20 @@
+<?php
+
+function get_xlsx() {
+    switch ($_GET['area']) {
+        case 1:
+            return base_url()."public/arbat.xlsx";
+            break;
+        case 2:
+            return base_url()."public/himki.xlsx";
+            break;
+        case 3:
+            return base_url()."public/kaliningrad.xlsx";
+            break;
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +49,7 @@
             <h3>Заведений: <span id="count"></span></h3>
         </div>
         <div class="col-xs-6 excel">
-            <a href="http://gwctest.org/bars/bars.xlsx">Excel</a>
+            <a href="<?= get_xlsx() ?>">Excel</a>
         </div>
     </div>
 </div>
