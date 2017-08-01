@@ -37,6 +37,7 @@ function initMaps() {
 
         districtArbat = new google.maps.Polygon({paths: districtCoords});
         districts.push(districtArbat);
+        districtArbat.setMap(map);
 
     } else if (region === 2) {
         /*
@@ -98,7 +99,6 @@ function initMaps() {
             {lat: 55.93131775411198, lng: 37.42642879486084},
             {lat: 55.941461554008335, lng: 37.4448823928833},
             {lat: 55.93908208586502, lng: 37.447757720947266},
-            {lat: 55.9005335807939, lng: 37.386817932128906},
             {lat: 55.93915419310793, lng: 37.44771480560303},
             {lat: 55.93225532568772, lng: 37.44623422622681},
             {lat: 55.92860107247081, lng: 37.44144916534424},
@@ -199,6 +199,14 @@ function initMaps() {
         districts.push(districtArbat6);
         districts.push(districtArbat7);
         districts.push(districtArbat8);
+        districtArbat1.setMap(map);
+        districtArbat2.setMap(map);
+        districtArbat3.setMap(map);
+        districtArbat4.setMap(map);
+        districtArbat5.setMap(map);
+        districtArbat6.setMap(map);
+        districtArbat7.setMap(map);
+        districtArbat8.setMap(map);
 
     } else if (region === 3) {
         /*
