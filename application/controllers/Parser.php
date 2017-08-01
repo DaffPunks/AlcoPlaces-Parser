@@ -49,7 +49,7 @@ class Parser extends CI_Controller
             $total_pages = $response->body->result->total / 50 + 1;
 
             var_dump($this->page . " " . $total_pages);
-            var_dump($response);
+//            var_dump($response);
 
             foreach ($response->body->result->items as $item) {
 
@@ -134,8 +134,8 @@ class Parser extends CI_Controller
 
             $this->page++;
 
-//        } while ($total_pages >= $this->page);
-        } while (0);
+        } while ($total_pages >= $this->page);
+//        } while (0);
 
     }
 
