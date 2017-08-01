@@ -84,10 +84,15 @@ class Parser extends CI_Controller
                     } if(isset($item->reviews->review_count)) {
                         $organization['reviews'] = $item->reviews->review_count;
                     }
-                    if(isset($item->schedule)) {
+                    if(isset($item->attribute_groups)) {
                         $organization['tags'] = $this->place_model->get_tags($item->attribute_groups);
                     } else {
                         $organization['tags'] = "";
+                    }
+                    if(isset($item->attribute_groups)) {
+                        $organization['eng_tags'] = $this->place_model->get_eng_tags($item->attribute_groups);
+                    } else {
+                        $organization['eng_tags'] = "";
                     }
 
 
@@ -103,7 +108,8 @@ class Parser extends CI_Controller
                         'schedule' => $organization['schedule'],
                         'rating' => $organization['rating'],
                         'reviews' => $organization['reviews'],
-                        'tags' => $organization['tags']
+                        'tags' => $organization['tags'],
+                        'eng_tags' => $organization['eng_tags']
                     ]);
 
                     if ($this->db->error()['code'] == '0') {

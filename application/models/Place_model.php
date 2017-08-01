@@ -107,6 +107,18 @@ class Place_model extends CI_Model
         return $text;
     }
 
+    public function get_eng_tags($attr_groups) {
+        $text = '';
+
+        foreach ($attr_groups as $attr_group) {
+            foreach ($attr_group->attributes as $attr) {
+                $text .= $attr->tag . '. ';
+            }
+        }
+
+        return $text;
+    }
+
     public function insert($attr) {
         $this->db->insert('places', $attr);
     }
