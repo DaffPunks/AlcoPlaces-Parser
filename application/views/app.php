@@ -1,7 +1,9 @@
 <?php
 
 function get_xlsx() {
-    switch ($_GET['area']) {
+    $area = isset($_GET['area']) ? $_GET['area'] : 1;
+
+    switch ($area) {
         case 1:
             return base_url()."public/arbat.xlsx";
             break;
@@ -26,7 +28,7 @@ function get_xlsx() {
 </head>
 <body>
 <script>
-    var region = <?= $_GET['area'] ?>;
+    var region = <?= isset($_GET['area']) ? $_GET['area'] : 1 ?>;
 </script>
 <header>
     <div class="container">
