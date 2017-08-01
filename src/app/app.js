@@ -310,6 +310,8 @@ function setMarkers(data) {
                     "Телефон": item.phone,
                     "Сайт": item.website,
                     "Расписание": parseWeeks(item.schedule),
+                    "Категории": item.category,
+                    "Тэги": item.tags
                 });
             }
         });

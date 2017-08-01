@@ -134,7 +134,9 @@ function setMarkers(data) {
                     "Адрес": item.address,
                     "Телефон": item.phone,
                     "Сайт": item.website,
-                    "Расписание": parseWeeks(item.schedule)
+                    "Расписание": parseWeeks(item.schedule),
+                    "Категории": item.category,
+                    "Тэги": item.tags
                 });
             }
         });
