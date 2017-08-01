@@ -223,8 +223,8 @@ function initMaps() {
 
     // districtArbat.setMap(map);
 
-    fetch('http://bars.dev/get?area=' + region)
-    // fetch('http://gwctest.org/bars/get')
+    // fetch('http://bars.dev/get?area=' + region)
+    fetch('http://gwctest.org/bars/get?area=' + region)
         .then(
             function(response) {
                 if (response.status !== 200) {
