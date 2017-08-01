@@ -145,7 +145,8 @@ function setMarkers(data) {
                     "Сайт": item.website,
                     "Расписание": parseWeeks(item.schedule),
                     "Категории": item.category,
-                    "Тэги": item.tags
+                    "Тэги": item.tags,
+                    "Tags": item.eng_tags
                 });
             }
         });
