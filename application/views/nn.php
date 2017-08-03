@@ -14,16 +14,16 @@
 <header>
     <div class="container">
         <div class="col-md-3">
-            <a href="/?area=1">Арбат</a>
+            <a href="<?= base_url(); ?>?area=1">Арбат</a>
         </div>
         <div class="col-md-3">
-            <a href="/?area=2">Химки</a>
+            <a href="<?= base_url(); ?>?area=2">Химки</a>
         </div>
         <div class="col-md-3">
-            <a href="/?area=3">Калининград</a>
+            <a href="<?= base_url(); ?>?area=3">Калининград</a>
         </div>
         <div class="col-md-3">
-            <a href="/nn">Нижний Новгород</a>
+            <a href="<?= base_url(); ?>nn">Нижний Новгород</a>
         </div>
     </div>
 </header>

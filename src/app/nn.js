@@ -49,7 +49,7 @@ function initMaps() {
     // districtArbat.setMap(map);
 
     // fetch('http://bars.dev/get_map?area=4')
-    fetch('http://gwctest.org/get_map?area=4')
+    fetch('http://gwctest.org/bars/get_map?area=4')
         .then(
             function(response) {
                 if (response.status !== 200) {
@@ -212,7 +212,7 @@ function parseWeeksHTML(weeksJSON) {
 
 function fetch_new(bounds) {
     // fetch('http://bars.dev/get_map?area=4&s='+bounds.south+'&e='+bounds.east+'&w='+bounds.west+'&n='+bounds.north)
-    fetch('http://gwctest.org/get_map?area=4&s='+bounds.south+'&e='+bounds.east+'&w='+bounds.west+'&n='+bounds.north)
+    fetch('http://gwctest.org/bars/get_map?area=4&s='+bounds.south+'&e='+bounds.east+'&w='+bounds.west+'&n='+bounds.north)
         .then(
             function(response) {
                 if (response.status !== 200) {
@@ -261,7 +261,7 @@ function needUpdate() {
 function fetchNewBlocks() {
     page++;
     // fetch('http://bars.dev/get_blocks?page=' + page)
-    fetch('http://gwctest.org/get_blocks?page=' + page)
+    fetch('http://gwctest.org/bars/get_blocks?page=' + page)
         .then(
             function(response) {
                 if (response.status !== 200) {
