@@ -372,7 +372,7 @@ function parseWeeks(weeksJSON) {
         if (json.Sun !== undefined)
             result += "Воскресенье: " + json.Sun.working_hours[0].from + "-" + json.Sun.working_hours[0].to + ". ";
         return result;
-        
+
     } catch (e) {
         console.log(e); // You get an error.
         console.log(weeksJSON); // You get an error.
