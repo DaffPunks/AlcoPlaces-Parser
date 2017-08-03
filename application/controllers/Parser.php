@@ -95,6 +95,8 @@ class Parser extends CI_Controller
                         $organization['eng_tags'] = "";
                     }
 
+                    $this->insert_tag($item->attribute_groups);
+
 
                     $this->place_model->insert([
                         'place_id' => $organization['place_id'],
@@ -159,6 +161,17 @@ class Parser extends CI_Controller
         }
     }
 
+    public function insert_tag($attr_groups) {
+        foreach ($attr_groups as $attr_group) {
+            foreach ($attr_group->attributes as $attr) {
+                $this->db->insert('tags', array(
+                    'name' => $attr->tag,
+                    'eng' => $attr->name
+                ));
+            }
+        }
+    }
+
     public function get() {
 
         $area = $_GET['area'] == null ? 1 : $_GET['area'];
@@ -188,8 +201,32 @@ class Parser extends CI_Controller
 
             echo json_encode($this->get_area());
 
+        } else if ($area == 4) {
+
+            $this->db->where('city', 19);
+
+            echo json_encode($this->get_area());
+
         }
 
+
+
+    }
+
+    public function get_types() {
+        $this->db->select('name');
+        $data = $this->db->get('types');
+        $results = $data->result_array();
+
+        echo json_encode($results);
+    }
+
+    public function get_tags() {
+        $this->db->select('name, eng');
+        $data = $this->db->get('tags');
+        $results = $data->result_array();
+
+        echo json_encode($results);
     }
 
     private function get_area() {

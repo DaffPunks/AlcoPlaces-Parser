@@ -86,6 +86,20 @@ function initMaps() {
 
         districtArbat = new google.maps.Polygon({ paths: districtCoords });
         districts.push(districtArbat);
+    } else if (region === 4) {
+        /*
+          Down Novgorod
+         */
+        map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 11,
+            center: { lat: 56.285399, lng: 43.920782 }
+        });
+
+        // Define the LatLng coordinates for the polygon's path.
+        districtCoords = [{ lat: 56.175557, lng: 43.708475 }, { lat: 56.413450, lng: 43.715824 }, { lat: 56.407577, lng: 43.864439 }, { lat: 56.340654, lng: 44.081645 }, { lat: 56.278146, lng: 44.154319 }, { lat: 56.203728, lng: 43.986107 }];
+
+        districtArbat = new google.maps.Polygon({ paths: districtCoords });
+        districts.push(districtArbat);
     }
 
     // districtArbat.setMap(map);
