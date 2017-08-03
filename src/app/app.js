@@ -350,9 +350,12 @@ function setMarkers(data) {
 
 
 function parseWeeks(weeksJSON) {
-    if(weeksJSON !== null) {
-        var result = "";
-        var json = JSON.parse(weeksJSON);
+
+    var result = "";
+    var json;
+
+    try {
+        json = JSON.parse(weeksJSON);
 
         if (json.Mon !== undefined)
             result += "Понедельник: " + json.Mon.working_hours[0].from + "-" + json.Mon.working_hours[0].to + ". ";
@@ -369,30 +372,43 @@ function parseWeeks(weeksJSON) {
         if (json.Sun !== undefined)
             result += "Воскресенье: " + json.Sun.working_hours[0].from + "-" + json.Sun.working_hours[0].to + ". ";
         return result;
-    } else {
+        
+    } catch (e) {
+        console.log(e); // You get an error.
+        console.log(weeksJSON); // You get an error.
+
         return "";
     }
 }
 function parseWeeksHTML(weeksJSON) {
     if(weeksJSON !== null) {
         var result = "<br>";
-        var json = JSON.parse(weeksJSON);
+        var json;
+        try {
+            json = JSON.parse(weeksJSON);
 
-        if(json.Mon !== undefined)
-            result += "Понедельник: " + json.Mon.working_hours[0].from + "-" + json.Mon.working_hours[0].to + ".<br>";
-        if(json.Tue !== undefined)
-            result += "Вторник: " + json.Tue.working_hours[0].from + "-" + json.Tue.working_hours[0].to + ".<br>";
-        if(json.Wed !== undefined)
-            result += "Среда: " + json.Wed.working_hours[0].from + "-" + json.Wed.working_hours[0].to + ".<br>";
-        if(json.Thu !== undefined)
-            result += "Четверг: " + json.Thu.working_hours[0].from + "-" + json.Thu.working_hours[0].to + ".<br>";
-        if(json.Fri !== undefined)
-            result += "Пятница: " + json.Fri.working_hours[0].from + "-" + json.Fri.working_hours[0].to + ".<br>";
-        if(json.Sat !== undefined)
-            result += "Суббота: " + json.Sat.working_hours[0].from + "-" + json.Sat.working_hours[0].to + ".<br>";
-        if(json.Sun !== undefined)
-            result += "Воскресенье: " + json.Sun.working_hours[0].from + "-" + json.Sun.working_hours[0].to + ".<br>";
-        return result;
+            if(json.Mon !== undefined)
+                result += "Понедельник: " + json.Mon.working_hours[0].from + "-" + json.Mon.working_hours[0].to + ".<br>";
+            if(json.Tue !== undefined)
+                result += "Вторник: " + json.Tue.working_hours[0].from + "-" + json.Tue.working_hours[0].to + ".<br>";
+            if(json.Wed !== undefined)
+                result += "Среда: " + json.Wed.working_hours[0].from + "-" + json.Wed.working_hours[0].to + ".<br>";
+            if(json.Thu !== undefined)
+                result += "Четверг: " + json.Thu.working_hours[0].from + "-" + json.Thu.working_hours[0].to + ".<br>";
+            if(json.Fri !== undefined)
+                result += "Пятница: " + json.Fri.working_hours[0].from + "-" + json.Fri.working_hours[0].to + ".<br>";
+            if(json.Sat !== undefined)
+                result += "Суббота: " + json.Sat.working_hours[0].from + "-" + json.Sat.working_hours[0].to + ".<br>";
+            if(json.Sun !== undefined)
+                result += "Воскресенье: " + json.Sun.working_hours[0].from + "-" + json.Sun.working_hours[0].to + ".<br>";
+            return result;
+
+        } catch (e) {
+            console.log(e); // You get an error.
+            console.log(weeksJSON); // You get an error.
+
+            return "";
+        }
 
     } else {
         return "";
