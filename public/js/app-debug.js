@@ -182,6 +182,7 @@ function parseWeeks(weeksJSON) {
 }
 function parseWeeksHTML(weeksJSON) {
     var result = "<br>";
+    console.log(weeksJSON);
     var json = JSON.parse(weeksJSON);
 
     if (json.Mon !== undefined) result += "Понедельник: " + json.Mon.working_hours[0].from + "-" + json.Mon.working_hours[0].to + ".<br>";

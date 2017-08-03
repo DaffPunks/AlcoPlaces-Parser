@@ -371,6 +371,7 @@ function parseWeeks(weeksJSON) {
 }
 function parseWeeksHTML(weeksJSON) {
     var result = "<br>";
+    console.log(weeksJSON);
     var json = JSON.parse(weeksJSON);
 
     if(json.Mon !== undefined)
