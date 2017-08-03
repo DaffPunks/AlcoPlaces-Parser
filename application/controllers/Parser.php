@@ -208,8 +208,101 @@ class Parser extends CI_Controller
             echo json_encode($this->get_area());
 
         }
+    }
 
+    public function get_map() {
 
+        $area = $_GET['area'] == null ? 1 : $_GET['area'];
+
+        if($area == 1) {
+            $this->db->where('lat >', 55.743217);
+            $this->db->where('lat <', 55.759544);
+            $this->db->where('long >', 37.569258);
+            $this->db->where('long <', 37.614718);
+            $this->db->where('city', 32);
+
+            echo json_encode($this->get_area());
+
+        } else if ($area == 2) {
+
+            $this->db->where('lat >', 55.872687);
+            $this->db->where('lat <', 56.003828);
+            $this->db->where('long >', 37.219064);
+            $this->db->where('long <', 37.498529);
+            $this->db->where('city', 32);
+
+            echo json_encode($this->get_area());
+
+        } else if ($area == 3) {
+
+            $this->db->where('city', 40);
+
+            echo json_encode($this->get_area());
+
+        } else if ($area == 4) {
+
+            if(isset($_GET['s'])){
+                $this->db->where('lat >', $_GET['s']);
+                $this->db->where('lat <', $_GET['n']);
+                $this->db->where('long >', $_GET['w']);
+                $this->db->where('long <', $_GET['e']);
+            }
+            $this->db->where('city', 19);
+//            if(!isset($_GET['s'])) {
+//                $this->db->order_by('RAND()');
+//            }
+
+            $data = $this->db->get('places', 70);
+
+            $results = $data->result_array();
+
+            echo json_encode($results);
+
+        }
+    }
+
+    public function get_blocks() {
+
+        $page = $_GET['page'];
+        $limit = 30 * $page;
+
+        $this->db->where('city', 19);
+        $count = $this->db->count_all_results('places');
+
+        $limit = $count < ($limit + 30);
+
+        $this->db->where('city', 19);
+        $this->db->limit($limit + 30, $limit);
+        $data = $this->db->get('places');
+
+        $results = $data->result_array();
+
+        /*for ($i = 0; $i < count($results); $i++) {
+            $this->db->where('place_id', $results[$i]['id']);
+            $data_pt = $this->db->get('place_types');
+            $types = $data_pt->result_array();
+
+            $category = '';
+            foreach ($types as $type) {
+                $this->db->where('id', $type['type_id']);
+                $data_t = $this->db->get('types');
+                $type_a = $data_t->result_array();
+
+                if($category != '') {
+                    $category .= ', ';
+                }
+
+                $category .= $type_a[0] ['name'];
+            }
+
+            $results[$i]['category'] = $category;
+        }*/
+
+        echo json_encode(array(
+            'count' => $count,
+            'items' => $results,
+            'limit' => $limit
+        ));
 
     }
 
@@ -257,4 +350,6 @@ class Parser extends CI_Controller
 
         return $results;
     }
+
+
 }

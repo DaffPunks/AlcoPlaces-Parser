@@ -291,7 +291,7 @@ function setMarkers(data) {
 
                 count++;
 
-                /*let DOM = '<div class="col-md-4 place">' +
+                let DOM = '<div class="col-md-4 place">' +
                     '<div class="place-wrap">' +
                     '<div class="title">'+item.name+'</div>' +
                     '<div class="coords">Координаты: '+item.lat+','+item.long+'</div>' +
@@ -304,7 +304,7 @@ function setMarkers(data) {
                     '<div class="website"><a href="http://'+item.website+'">'+item.website+'</a></div>' +
                     '<div class="schedule">'+parseWeeksHTML(item.schedule)+'</div>' +
                     '</div>' +
-                    '</div>';*/
+                    '</div>';
 
                 let DOM_IW = '<div class="place">' +
                     '<div class="place-wrap">' +
@@ -329,7 +329,7 @@ function setMarkers(data) {
                     infowindow.open(map, marker);
                 });
 
-                //document.getElementById('places').innerHTML += DOM;
+                document.getElementById('places').innerHTML += DOM;
 
                 array.push({
                     "Название": item.name,

@@ -136,20 +136,7 @@ function setMarkers(data) {
 
                 count++;
 
-                /*let DOM = '<div class="col-md-4 place">' +
-                    '<div class="place-wrap">' +
-                    '<div class="title">'+item.name+'</div>' +
-                    '<div class="coords">Координаты: '+item.lat+','+item.long+'</div>' +
-                    '<div class="phone">'+item.phone+'</div>' +
-                    '<div class="phone">'+item.address+'</div>' +
-                    '<div class="phone">'+item.category+'</div>' +
-                    '<div class="phone">Рейтинг: '+item.rating+'</div>' +
-                    '<div class="phone">Отзывов: '+item.reviews+'</div>' +
-                    '<div class="phone">'+item.tags+'</div>' +
-                    '<div class="website"><a href="http://'+item.website+'">'+item.website+'</a></div>' +
-                    '<div class="schedule">'+parseWeeksHTML(item.schedule)+'</div>' +
-                    '</div>' +
-                    '</div>';*/
+                var DOM = '<div class="col-md-4 place">' + '<div class="place-wrap">' + '<div class="title">' + item.name + '</div>' + '<div class="coords">Координаты: ' + item.lat + ',' + item.long + '</div>' + '<div class="phone">' + item.phone + '</div>' + '<div class="phone">' + item.address + '</div>' + '<div class="phone">' + item.category + '</div>' + '<div class="phone">Рейтинг: ' + item.rating + '</div>' + '<div class="phone">Отзывов: ' + item.reviews + '</div>' + '<div class="phone">' + item.tags + '</div>' + '<div class="website"><a href="http://' + item.website + '">' + item.website + '</a></div>' + '<div class="schedule">' + parseWeeksHTML(item.schedule) + '</div>' + '</div>' + '</div>';
 
                 var DOM_IW = '<div class="place">' + '<div class="place-wrap">' + '<div class="title">' + item.name + '</div>' + '<div class="coords">Координаты: ' + item.lat + ',' + item.long + '</div>' + '<div class="phone">' + item.phone + '</div>' + '<div class="phone">' + item.address + '</div>' + '<div class="phone">' + item.category + '</div>' + '<div class="phone">Рейтинг: ' + item.rating + '</div>' + '<div class="phone">Отзывов: ' + item.reviews + '</div>' + '<div class="phone">' + item.tags + '</div>' + '<div class="website"><a href="http://' + item.website + '">' + item.website + '</a></div>' + '<div class="schedule">' + parseWeeksHTML(item.schedule) + '</div>' + '</div>' + '</div>';
 
@@ -161,7 +148,7 @@ function setMarkers(data) {
                     infowindow.open(map, marker);
                 });
 
-                //document.getElementById('places').innerHTML += DOM;
+                document.getElementById('places').innerHTML += DOM;
 
                 array.push({
                     "Название": item.name,

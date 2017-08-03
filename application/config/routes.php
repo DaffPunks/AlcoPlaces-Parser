@@ -60,3 +60,6 @@ $route['get'] = 'parser/get';
 $route['test'] = 'front/test';
 $route['types'] = 'parser/get_types';
 $route['tags'] = 'parser/get_tags';
+$route['get_map'] = 'parser/get_map';
+$route['nn'] = 'front/nn';
+$route['get_blocks'] = 'parser/get_blocks';

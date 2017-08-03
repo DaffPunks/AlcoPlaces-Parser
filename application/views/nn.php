@@ -1,21 +1,5 @@
 <?php
 
-function get_xlsx() {
-    $area = isset($_GET['area']) ? $_GET['area'] : 1;
-
-    switch ($area) {
-        case 1:
-            return base_url()."public/arbat.xlsx";
-            break;
-        case 2:
-            return base_url()."public/himki.xlsx";
-            break;
-        case 3:
-            return base_url()."public/kaliningrad.xlsx";
-            break;
-    }
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,9 +11,6 @@ function get_xlsx() {
     <link href="<?= base_url(); ?>public/css/style.css" rel="stylesheet">
 </head>
 <body>
-<script>
-    var region = <?= isset($_GET['area']) ? $_GET['area'] : 1 ?>;
-</script>
 <header>
     <div class="container">
         <div class="col-md-3">
@@ -54,12 +35,12 @@ function get_xlsx() {
             <h3>Заведений: <span id="count"></span></h3>
         </div>
         <div class="col-xs-6 excel">
-            <a href="<?= get_xlsx() ?>">Excel</a>
+            <a href="<?= base_url()."public/nn.xlsx" ?>">Excel</a>
         </div>
     </div>
 </div>
 
-<script src="<?= base_url(); ?>public/js/app.min.js"></script>
+<script src="<?= base_url(); ?>public/js/nn.min.js"></script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtGSwjhnBEodc5HQBYuALvuHXBeDTKMbc&callback=initMaps">
 </script>
