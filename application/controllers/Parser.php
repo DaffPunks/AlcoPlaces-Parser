@@ -53,7 +53,7 @@ class Parser extends CI_Controller
 
             foreach ($response->body->result->items as $item) {
 
-                if ($this->place_model->check_for_type($item->rubrics)) {
+                if ($this->place_model->check_for_type($item->rubrics, $item->attribute_groups, $item->name)) {
 
                     $organization['place_id'] = $this->place_model->get_real_id($item->id);
                     $organization['name'] = $item->name;

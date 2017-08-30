@@ -46,11 +46,22 @@ class Place_model extends CI_Model
         return explode('_', $id)[0];
     }
 
-    public function check_for_type($rubrics)
+    public function check_for_type($rubrics, $attribute_groups, $name)
     {
         $is_cafe_bar_club_primary = false;
-
+        $is_not_kidplace = true;
         $is_not_fastfood = true;
+
+        $dictionary = [
+            'pizza',
+            'пицца',
+            'taco',
+            'taco',
+            'краб',
+            'crab',
+            'burg',
+            'бург',
+            ];
 
         foreach ($rubrics as $rubric) {
             if ($rubric->kind == "primary") {
@@ -86,13 +97,27 @@ class Place_model extends CI_Model
                 }
 
                 //Is kid place?
-                //if($rubric->short_id == 16743) {
-                //    $is_not_kidplace = false;
-                //}
+                if($rubric->short_id == 16743) {
+                    $is_not_kidplace = false;
+                }
+            }
+        }
+        foreach ($attribute_groups as $attr_group) {
+            foreach ($attr_group->attributes as $attr) {
+                if($attr->tag == "food_service_details_kids_menu" ||
+                    $attr->tag == "food_service_infrastructure_kids_room" ||
+                    $attr->tag == "food_service_infrastructure_children_entertainment") {
+                    $is_not_kidplace = false;
+                }
+            }
+        }
+        foreach ($dictionary as $word) {
+            if (strpos($name, $word) !== false) {
+                $is_cafe_bar_club_primary = false;
             }
         }
 
-        return $is_cafe_bar_club_primary && $is_not_fastfood;
+        return $is_cafe_bar_club_primary && $is_not_fastfood && $is_not_kidplace;
     }
 
     public function get_tags($attr_groups) {
